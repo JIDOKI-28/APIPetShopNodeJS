@@ -1,11 +1,14 @@
 const express = require('express')
-const router = require('./src/routers/dog')
+const routerDog = require('./src/routers/dog')
+const routerClient = require('./src/routers/client')
+
 const database = require('./src/config/database')
 const app = express()
 const port = 3000
 
 app.use(express.json())
-app.use(router)
+app.use('/dog/', routerDog)
+app.use('/client/', routerClient)
 
 database.db
     .sync({force: false})
